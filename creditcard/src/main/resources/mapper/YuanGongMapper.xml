@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.YuanGongMapper">
+	<!--分页查询 -->
+	<select id="queryByUserInfoAll"
+		parameterType="com.example.demo.pojo.LoginInfo"
+		resultType="com.example.demo.pojo.LoginInfo">
+		select
+		<include refid="columnSql"></include>
+		from loginInfo
+		<include refid="selectConditionSql"></include>
+	</select>
+	<sql id="columnSql">
+		id,phone,password,state,usertype,createtime,updatetime,if_Delete
+	</sql>
+	<sql id="selectConditionSql">
+		<where>
+			usertype = 1
+			<if test=" id != null">
+				and id = #{id}
+			</if>
+			<if test=" phone != null">
+				and phone = #{phone}
+			</if>
+			<if test=" state != null">
+				and state = #{state}
+			</if>
+			<if test=" createtime != null and createtime != '' ">
+				and createtime = #{createtime}
+			</if>
+			<if test=" updatetime != null and updatetime != '' ">
+				and updatetime = #{updatetime}
+			</if>
+			<if test=" ifDelete != null and ifDelete != '' ">
+				and if_Delete = #{ifDelete}
+			</if>
+		</where>
+	</sql>
+	<!--批量删除 软删除 -->
+	<update id="batchDeletUserById">
+		update loginInfo set IF_DELETE = 1
+		<where>
+			<foreach collection="array" item="id" open="id in ("
+				close=")" separator=",">
+				#{id}
+			</foreach>
+		</where>
+	</update>
+	<!--根据员工id 查询员工信息 -->
+	<select id="queryGoodById"
+		resultType="com.example.demo.pojo.LoginInfo">
+		select
+		<include refid="columnSql"></include>
+		from loginInfo
+		<where>
+			<if test=" id != null">
+				and id = #{id}
+			</if>
+		</where>
+	</select>
+
+	<!--修改员工信息 -->
+	<update id="updateLoginInf" parameterType="com.example.demo.vo.LoginInfoVo">
+		update loginInfo set IF_DELETE = #{ifDelete},password = #{password},phone = #{phone}
+		<where>
+			<if test=" id != null">
+				and id = #{id}
+			</if>
+		</where>
+	</update>
+	
+	<!--删除 软删除 -->
+	<update id="deletLogin">
+		update loginInfo set IF_DELETE = 1
+		<where>
+			<if test=" id != null">
+				and id = #{id}
+			</if>
+		</where>
+	</update>
+	<!--添加用户  -->
+	<insert id="addLoginInfo" parameterType="com.example.demo.pojo.LoginInfo">
+		insert into loginInfo(id,phone,password,state,usertype,createtime,updatetime,if_Delete)
+		values(seq_loginInfo.nextval,#{phone},#{password},0,#{usertype},#{createtime},#{updatetime},0)
+	</insert>
+</mapper>

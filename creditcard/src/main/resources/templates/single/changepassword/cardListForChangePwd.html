@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>信用卡列表</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/frame.css">
+        <link rel="stylesheet" href="/css/addClass.css">
+        <style type="text/css">
+            .maindir{
+                width: 1400px;
+                margin-left: : 50px;
+                text-align: center;
+            }
+            tr{
+                height: 50px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <dir id="maindir" class="maindir">
+            <div class="operates clearfix" style="overflow: auto;white-space: nowrap; font-size: 0;">
+                <form id="SearchForm" action="/userCardList.do" method="post">
+                    <div class="pull-left left-inp defualt">
+                        <h2 style="margin-left: 300px">信用卡列表</h2>
+                        <input type="text"  style="margin-left: 10px;" placeholder="姓名" name="realname" th:value="${realname}">
+                        <input type="text"  style="margin-left: 10px;" placeholder="身份证号" name="idcartnumber" th:value="${idcartnumber}">
+                        <input type="text"  style="margin-left: 10px;" placeholder="卡号 " name="cardnumber" th:value="${cardnumber}">
+                        <button class="btn delete pramary">搜索</button>
+                    </div>
+                </form>
+            </div>
+           <table class="cardlist" id="cardlist" style="width: 800px; text-align: center;" border="1px" >
+               <tr style="font-weight: bold;">
+                   <td>信用卡序号</td>
+                   <td>用户姓名</td>
+                   <td>绑定电话</td>
+                   <td>身份证号</td>
+                   <td>信用卡号</td>
+                   <td>卡状态</td>
+                   <td>黑名单</td>
+                   <td>操作</td>
+               </tr>
+               <tr th:each="card:${userList}">
+                   <td><span th:text="${card.cardId}">2131431</span></td>
+                   <td><span th:text="${card.realname}">2131431</span></td>
+                   <td><span th:text="${card.phone}">2131431</span></td>
+                   <td><span th:text="${card.idcartnumber}">2131431</span></td>
+                   <td><span th:text="${card.cardnumber}">2131431</span></td>
+                   <td><span th:text="${card.state}">2131431</span></td>
+                   <td><span th:text="${card.ifBlackname}">2131431</span></td>
+                   <td><a th:href="@{/changepassword.do(id=${card.cardId})}">修改密码</a></td>
+               </tr>
+           </table>
+        </dir>
+    </body>
+    <script src="/js/plugin/jquery/jquery.js"></script>
+    <script src="/js/frame-base.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+</html>

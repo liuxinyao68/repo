@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.BillingDateMapper">
+
+	<select id="queryBillingDateByCondition" resultType="BillingDate" parameterType="BillingDate">
+		select <include refid="columnSql"/> from BillingDate <include refid="selectConditionSql"/>
+	</select>
+	
+	<sql id="columnSql">
+		temporaryquota temporaryQuota, surplustemporaryquota surplusTemporaryQuota,Spending spending,Arrearage arrearage,withdraw withdraw,charge charge,id id,version version,state state,surplusquota surplusQuota,tixianTime tixiantime,card_id cardId 
+	</sql>
+	
+	<sql id="selectConditionSql">
+		<where>
+			<if test=" cardId !=null and cardId != '' ">
+				and card_id = #{cardId}
+			</if>
+		</where>
+	</sql>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

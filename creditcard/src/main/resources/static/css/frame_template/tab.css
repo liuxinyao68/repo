@@ -1,0 +1,21 @@
+.tab-title {
+  border-bottom: 2px solid #e8e8e8;
+  height: 40px; }
+  .tab-title a {
+    display: block;
+    float: left;
+    height: 33px;
+    width: 100px;
+    line-height: 33px;
+    text-align: center;
+    color: #333;
+    margin-right: 5px;
+    background: url("../../img/frame-tab-title.png") no-repeat; }
+    .tab-title a.active {
+      background: url("../../img/frame-tab-title-active.png") no-repeat;
+      height: 39px; }
+
+/*# sourceMappingURL=tab.css.map */
+
+
+

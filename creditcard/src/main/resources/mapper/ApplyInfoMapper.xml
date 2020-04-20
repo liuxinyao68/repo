@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.ApplyInfoMapper">
+
+	<select id="queryApplyInfoByCondition" resultType="ApplyInfo" parameterType="ApplyInfo">
+		select <include refid="columnSql"/> from ApplyInfo <include refid="selectConditionSql"/>
+	</select>
+	
+	<insert id="insertApplyInfoByCondition" parameterType="ApplyInfo">
+		insert into ApplyInfo(<include refid="columnSql"/>) values <include refid="insertColunmSql"/>
+	</insert>
+	
+	<update id="updateIfDelete" parameterType="ApplyInfo">
+		update APPLYINFO set if_delete = 1 where id = #{id}
+	</update>
+	
+	<sql id="insertColunmSql">
+		(seq_applyinfo.nextval,#{marriageId},#{educationId},#{contactstype},#{contactname},#{contactphone},#{email},#{homeprovince},#{homecity},#{homeregion},#{homeaddress},#{ifhaveRoom},#{liveYears},#{carnumber},#{carbrand},#{job},#{creditcardstarttime},#{creditcardendtime},#{sendcardaddress},#{unitname},#{postname},#{workYears},#{companyprovince},#{companycity},#{companyregion},#{companyaddress},#{companyphonetype},#{companyphone},#{createtime},#{updatetime},#{ifDelete})
+	</sql>
+
+	<sql id="columnSql">
+		id,marriage_Id,education_Id,contactstype,contactname,contactphone,email,homeprovince,homecity,homeregion,homeaddress,ifhave_Room,live_Years,carnumber,carbrand,job,creditcardstarttime,creditcardendtime,sendcardaddress,unitname,postname,work_Years,companyprovince,companycity,companyregion,companyaddress,companyphonetype,companyphone,createtime,updatetime,if_Delete
+	</sql>
+
+	<sql id="selectConditionSql">
+		<where>
+			<if test=" id != null and id != '' ">
+				and id = #{id}
+			</if>
+			<if test=" marriageId != null and marriageId != '' ">
+				and marriage_Id = #{marriageId}
+			</if>
+			<if test=" educationId != null and educationId != '' ">
+				and education_Id = #{educationId}
+			</if>
+			<if test=" contactstype != null and contactstype != '' ">
+				and contactstype = #{contactstype}
+			</if>
+			<if test=" contactname != null and contactname != '' ">
+				and contactname = #{contactname}
+			</if>
+			<if test=" contactphone != null and contactphone != '' ">
+				and contactphone = #{contactphone}
+			</if>
+			<if test=" email != null and email != '' ">
+				and email = #{email}
+			</if>
+			<if test=" homeprovince != null and homeprovince != '' ">
+				and homeprovince = #{homeprovince}
+			</if>
+			<if test=" homecity != null and homecity != '' ">
+				and homecity = #{homecity}
+			</if>
+			<if test=" homeregion != null and homeregion != '' ">
+				and homeregion = #{homeregion}
+			</if>
+			<if test=" homeaddress != null and homeaddress != '' ">
+				and homeaddress = #{homeaddress}
+			</if>
+			<if test=" ifhaveRoom != null and ifhaveRoom != '' ">
+				and ifhave_Room = #{ifhaveRoom}
+			</if>
+			<if test=" liveYears != null and liveYears != '' ">
+				and live_Years = #{liveYears}
+			</if>
+			<if test=" carnumber != null and carnumber != '' ">
+				and carnumber = #{carnumber}
+			</if>
+			<if test=" carbrand != null and carbrand != '' ">
+				and carbrand = #{carbrand}
+			</if>
+			<if test=" job != null and job != '' ">
+				and job = #{job}
+			</if>
+			<if test=" creditcardstarttime != null and creditcardstarttime != '' ">
+				and creditcardstarttime = #{creditcardstarttime}
+			</if>
+			<if test=" creditcardendtime != null and creditcardendtime != '' ">
+				and creditcardendtime = #{creditcardendtime}
+			</if>
+			<if test=" sendcardaddress != null and sendcardaddress != '' ">
+				and sendcardaddress = #{sendcardaddress}
+			</if>
+			<if test=" unitname != null and unitname != '' ">
+				and unitname = #{unitname}
+			</if>
+			<if test=" postname != null and postname != '' ">
+				and postname = #{postname}
+			</if>
+			<if test=" workYears != null and workYears != '' ">
+				and work_Years = #{workYears}
+			</if>
+			<if test=" companyprovince != null and companyprovince != '' ">
+				and companyprovince = #{companyprovince}
+			</if>
+			<if test=" companycity != null and companycity != '' ">
+				and companycity = #{companycity}
+			</if>
+			<if test=" companyregion != null and companyregion != '' ">
+				and companyregion = #{companyregion}
+			</if>
+			<if test=" companyaddress != null and companyaddress != '' ">
+				and companyaddress = #{companyaddress}
+			</if>
+			<if test=" companyphonetype != null and companyphonetype != '' ">
+				and companyphonetype = #{companyphonetype}
+			</if>
+			<if test=" companyphone != null and companyphone != '' ">
+				and companyphone = #{companyphone}
+			</if>
+			<if test=" createtime != null and createtime != '' ">
+				and createtime = #{createtime}
+			</if>
+			<if test=" updatetime != null and updatetime != '' ">
+				and updatetime = #{updatetime}
+			</if>
+			<if test=" ifDelete != null and ifDelete != '' ">
+				and if_Delete = #{ifDelete}
+			</if>
+		</where>
+	</sql>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

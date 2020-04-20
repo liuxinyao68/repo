@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.ReportFormMapper">
+	<!--查询分期表所有信息 -->
+	<select id="getBystagesAll" parameterType="com.example.demo.vo.BaoBiaosVo" resultType="com.example.demo.pojo.Bystages">
+		select
+		<include refid="columnSql"></include>
+		from bystages
+		<where>
+			<if test=" createtime != null">
+				and createtime &gt;= #{createtime}
+			</if>
+			<if test=" endcreatetime != null">
+				and createtime &lt;= #{endcreatetime}
+			</if>
+		</where>
+	</select>
+	<sql id="columnSql">
+		TOTALMONEY,TOTALMONTH,RATE,MONTHSEND,ENDSEND_MONTHNUM,REMINDNUM,CREATETIME,
+		UPDATETIME,IF_DELETE,CRED_ID
+	</sql>
+	<!-- 查询流水表所有信息 -->
+	<select id="getBillAll" parameterType="com.example.demo.vo.BaoBiaosVo"
+		resultType="com.example.demo.pojo.Bill">
+		select
+		<include refid="billSql"></include>
+		from bill
+		<where>
+			<if test=" createtime != null">
+				and createtime &gt;= #{createtime}
+			</if>
+			<if test=" endcreatetime != null">
+				and createtime &lt;= #{endcreatetime}
+			</if>
+		</where>
+	</select>
+	<sql id="billSql">
+		RECEIVEPEOPLE,RECEIVEMONEY,BILLTYPE,SENDCARDTYPE,SENDCARDID,USER_ID,CREATETIME
+	</sql>
+	
+</mapper>

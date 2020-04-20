@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>分期报表页面</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-
+scale=1.0">
+<link rel="stylesheet" th:href="@{../bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{../css/frame.css}">
+<link rel="stylesheet" th:href="@{../css/addClass.css}">
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#queryData").click(function() {
+			var formValues = $("#queryForm").serialize();
+			alert(formValues);
+			location.href = "reportForm?" + formValues;
+		});
+
+	});
+</script>
+</head>
+<body>
+	<div class="frame-header">
+		<span class="page-reload cur">分期报表页面</span>
+	</div>
+	<!--操作栏-->
+	<div class="operates clearfix"
+		style="overflow: auto; white-space: nowrap; font-size: 0;">
+		<form th:action="@{'reportFormXls'}" id="queryForm">
+			<div class="pull-left left-inp defualt">
+				<span><input type="date" class="pull-left"
+					style="margin-left: 10px;" placeholder="开始时间" name="createtime"
+					th:value="${baoBiaoVo.createtime}" /> </span><span>到</span> <span><input
+					type="date" class="pull-left" style="margin-left: 10px;"
+					placeholder="结束时间" name="endcreatetime"
+					th:value="${baoBiaoVo.endcreatetime}"> </span>
+				<button type="submit" class="btn delete pramary">查询</button>
+			</div>
+		</form>
+		<div class="footer" style="text-align: right;">
+			<button type="button" class="btn btn-danger" id="batchDel">批量删除</button>
+		</div>
+	</div>
+	<!--表格-->
+	<div class="table-wrapper pl27 " style="min-width: 1000px;">
+		<table class="table text-center">
+			<thead>
+				<tr>
+					<th class="sort cur" style="width: 10%;">用户<img class="bottom"
+						src="../img/jt-bottom.png" alt=""> <img class="top"
+						style="display: none" src="../img/jt-right-co.png" alt="">
+					</th>
+					<th class="sort cur" style="width: 5%;">分期总金额<img
+						class="bottom" src="../img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="../img/jt-right-co.png"
+						alt="">
+					</th>
+					<th style="width: 5%;" class="sort cur">分期期数 <img
+						class="bottom" src="../img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="../img/jt-right-co.png"
+						alt="">
+					</th>
+					<th style="width: 5%;" class="sort cur">单期手续费<img
+						class="bottom" src="../img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="../img/jt-right-co.png"
+						alt="">
+					</th>
+					<th style="width: 5%;" class="sort cur">每期应还 <img
+						class="bottom" src="../img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="../img/jt-right-co.png"
+						alt="">
+					</th>
+					<th style="width: 5%;" class="sort cur">已还期数 <img
+						class="bottom" src="../img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="../img/jt-right-co.png"
+						alt="">
+					</th>
+					<th style="width: 5%;" class="sort cur">提醒次数 <img
+						class="bottom" src="../img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="../img/jt-right-co.png"
+						alt="">
+					</th>
+					<th style="width: 5%;" class="sort cur">创建时间 <img
+						class="bottom" src="../img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="../img/jt-right-co.png"
+						alt="">
+					</th>
+					<th style="width: 5%;" class="sort cur">更新时间 <img
+						class="bottom" src="../img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="../img/jt-right-co.png"
+						alt="">
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="bystages:${userList}">
+					<td th:text="${bystages.credid}"></td>
+					<td th:text="${bystages.totalmoney}"></td>
+					<td th:text="${bystages.totalmonth}"></td>
+					<td th:text="${bystages.rate}"></td>
+					<td th:text="${bystages.monthsend}"></td>
+					<td th:text="${bystages.endsendMonthnum}"></td>
+					<td th:text="${bystages.remindnum}"></td>
+					<td th:text="${#dates.format(bystages.createtime,'yyyy-MM-dd')}"></td>
+					<td th:text="${#dates.format(bystages.updatetime,'yyyy-MM-dd')}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<!--显示分页信息-->
+		<div class="modal-footer no-margin-top">
+			<div class="col-md-6">当前第 [[${pageInfo.pageNum}]]页,共
+				[[${pageInfo.pages}]] 页.一共 [[${pageInfo.total}]] 条记录</div>
+
+			<ul class="pagination pull-right no-margin">
+				<li th:if="${pageInfo.hasPreviousPage}"><a
+					th:href="@{'/reportFormXls?pageNum=1'+'&createtime='+${baoBiaoVo.createtime}+'&endcreatetime='+${baoBiaoVo.endcreatetime}}">首页</a></li>
+
+				<li class="prev" th:if="${pageInfo.hasPreviousPage}"><a
+					th:href="@{'/reportFormXls?pageNum='+${pageInfo.prePage}+'&createtime='+${baoBiaoVo.createtime}+'&endcreatetime='+${baoBiaoVo.endcreatetime}}">
+						<i class="ace-icon fa fa-angle-double-left"></i>
+				</a></li>
+				<!-- 遍历条数 -->
+				<li th:each="nav:${pageInfo.navigatepageNums}"><a
+					th:href="@{'/reportFormXls?pageNum='+${nav}+'&createtime='+${baoBiaoVo.createtime}+'&endcreatetime='+${baoBiaoVo.endcreatetime}}"
+					th:text="${nav}" th:if="${nav != pageInfo.pageNum}"></a> <span
+					style="font-weight: bold; background: #6faed9;"
+					th:if="${nav == pageInfo.pageNum}" th:text="${nav}"></span></li>
+
+				<li class="next" th:if="${pageInfo.hasNextPage}"><a
+					th:href="|@{'/reportFormXls?pageNum='${pageInfo.nextPage}'&createtime='${baoBiaoVo.createtime}'&endcreatetime='${baoBiaoVo.endcreatetime}}|">
+						<i class="ace-icon fa fa-angle-double-right"></i>
+				</a></li>
+
+				<li><a
+					th:href="@{'/reportFormXls?pageNum='+${pageInfo.pages}+'&createtime='+${baoBiaoVo.createtime}+'&endcreatetime='+${baoBiaoVo.endcreatetime}}">尾页</a>
+				</li>
+			</ul>
+		</div>
+		<div class="modal-footer">
+			<button type="button" id="queryData" class="btn btn-primary">导出报表</button>
+		</div>
+	</div>
+
+</body>
+</html>

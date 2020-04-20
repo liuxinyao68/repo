@@ -1,0 +1,368 @@
+.welcome-background {
+    background: url("../img/welcome-background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+}
+.welcome-logo {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    margin-left: -340px;
+    height: 181px;
+}
+.welcome-sub-title {
+    position: absolute;
+    top: 226px;
+    left: 50%;
+    margin-left: -340px;
+    height: 68px;
+    z-index: 2;
+}
+.welcome-sub-title-img {
+    position: absolute;
+    top: 220px;
+    width: 100%;
+    height: 85px;
+    z-index: 1;
+    box-shadow: 1px 0px 2px 1px #aaaaaa;
+}
+.welcome-book {
+    position: absolute;
+    top: 326px;
+    left: 50%;
+    margin-left: -340px;
+}
+.welcome-book {
+    position: absolute;
+    top: 380px;
+    left: 50%;
+    margin-left: -385px;
+    cursor: pointer;
+}
+.welcome-sort {
+    position: absolute;
+    top: 450px;
+    left: 50%;
+    margin-left: -105px;
+    cursor: pointer;
+}
+.welcome-order {
+    position: absolute;
+    top: 380px;
+    left: 50%;
+    margin-left: 178px;
+    cursor: pointer;
+}
+.welcome-footer {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    margin-left: -610px;
+}
+.welcome-footer {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    margin-left: -610px;
+}
+.login-logo {
+    position: absolute;
+    top: 15px;
+    left: 50px;
+}
+.login-change {
+    color: #a8a8a8;
+    position: absolute;
+    top: 70px;
+    right: 50px;
+}
+.login-change span {
+    color: #e7e7e7;
+}
+.login-title {
+    background: url(../img/login_bg.jpg) repeat-x;
+    position: absolute;
+    top: 130px;
+    left: 50px;
+    right: 50px;
+    font-size: 24px;
+   height: 8px;
+    text-align: center;
+    color: #ffffff;
+}
+.login-title.default{
+    background: url(../img/login_bg_1.jpg) repeat-x; 
+}
+
+.login-footer {
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    right: 50px;
+    font-size: 14px;
+    padding-top: 24px;
+    text-align: center;
+    color: #d9d9d9;
+    border-top: #e5e5e5 1px solid;
+}
+.ob-form {
+    height: 45px;
+    line-height: 45px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #d6d6d6;
+    font-size: 16px;
+    outline: none;
+    padding-left: 20px;
+    font-family: "PingFang SC Regular", "Microsoft YaHei";
+    vertical-align: middle;
+}
+.ob-form:focus{
+    box-shadow: 0 0 15px #b7f0a6;
+    border-color: #b7f0a6;
+}
+.login-form-area {
+    position: absolute;
+    top: 205px;
+    left: 50%;
+    width: 450px;
+    font-size: 14px;
+    margin-left: -225px;
+    color: #333333;
+}
+.login-form-user {
+    width: 362px;
+}
+.login-form-vc {
+    width: 246px;
+}
+.login-form-tx{
+    width: 120px;
+}
+.login-vc {
+    width: 110px;
+    background: #ffffff;
+    color: #859d5d;
+    text-align: center;
+    padding-left: 0;
+}
+.login-btn {
+     background: #feb900;
+    position: absolute;
+    top: 275px;
+    right: 9px;
+    font-size: 18px;
+    color: #fff;
+    height: 55px;
+    line-height: 40px;
+    font-size: 21px;
+    text-align: center;
+    width: 362px;
+}
+.login-btn:hover,.login-btn:active{
+    color: #fff!important;
+}
+.login-register {
+    position: absolute;
+    color: #0088ce;
+    top: 230px;
+    cursor: pointer;
+}
+.login-register.active {
+    color: #000000;
+}
+.find-password-title {
+    position: absolute;
+    top: 130px;
+    left: 50px;
+    right: 50px;
+    font-size: 18px;
+    text-align: center;
+}
+.find-password-step-1 {
+    position: absolute;
+    background: #feb900;
+    padding: 10px;
+    height: 44px;
+    width: 25%;
+    font-weight: 600;
+    color: #ffffff;
+    z-index: 4;
+}
+.find-password-step-2 {
+    position: absolute;
+    left: 25%;
+    background: #feb900;
+    color: #ffffff;
+    top:0px;
+    padding: 10px;
+    height: 44px;
+    width: 25%;
+    z-index: 3;
+}
+.find-password-step-3 {
+    position: absolute;
+    left: 50%;
+    background: #efefef;
+    color: #464646;
+    top:0px;
+    padding: 10px;
+    height: 44px;
+    width: 25%;
+    z-index: 2;
+}
+.find-password-step-3.active {
+    background: #feb900;
+    color: #ffffff;
+}
+.find-password-step-4 {
+    position: absolute;
+    left: 75%;
+    background: #efefef;
+    color: #464646;
+    top:0px;
+    padding: 10px;
+    height: 44px;
+    width: 25%;
+    z-index: 1;
+}
+.find-password-step-4.active {
+    background: #feb900;
+    color: #ffffff;
+}
+.find-password-step-triangle-active {
+    position: absolute;
+    top:0px;
+    right: -15px;
+    width: 0;
+    height: 0;
+    border-top: 22px solid transparent;
+    border-left: 15px solid #feb900;
+    border-bottom: 22px solid transparent;
+}
+.find-password-step-triangle {
+    position: absolute;
+    top:0px;
+    right: -15px;
+    width: 0;
+    height: 0;
+    border-top: 22px solid transparent;
+    border-left: 15px solid #efefef;
+    border-bottom: 22px solid transparent;
+}
+.find-password-step-left-1 {
+    position: absolute;
+    top:0px;
+    left: 0px;
+    height: 44px;
+    width: 5px;
+    background: #ffffff;
+}
+.find-password-step-left-1-active {
+    position: absolute;
+    top:0px;
+    left: 0px;
+    height: 44px;
+    width: 5px;
+    background: #feb900;
+}
+.find-password-step-left-2 {
+    position: absolute;
+    top:0px;
+    left: 5px;
+    width: 10;
+    height: 0;
+    border-top: 22px solid transparent;
+    border-left: 15px solid #ffffff;
+    border-bottom: 22px solid transparent;
+}
+.find-password-step-left-2-active {
+    position: absolute;
+    top:0px;
+    left: 5px;
+    width: 10;
+    height: 0;
+    border-top: 22px solid transparent;
+    border-left: 15px solid #feb900;
+    border-bottom: 22px solid transparent;
+}
+.find-password-v {
+    position: absolute;
+    top: 280px;
+    left: 180px;
+    right: 180px;
+    font-size: 14px;
+    color: #333333;
+    display: none;
+}
+.find-password-type {
+    height: 135px;
+    border: #f4f4f4 2px solid;
+    margin-top: 15px;
+    position: relative;
+    cursor: pointer;
+}
+.find-password-type.active {
+    border: #45b4eb 2px solid;
+}
+.find-password-type-img {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+.find-password-type-title {
+    position: absolute;
+    font-size: 24px;
+    color: #333333;
+    top: 25px;
+    left: 155px;
+}
+.find-password-type-name {
+    position: absolute;
+    font-size: 16px;
+    color: #666666;
+    top: 70px;
+    left: 155px;
+}
+.find-password-type-input {
+    margin-top: 25px;
+    display: none;
+}
+.find-password-last {
+    position: absolute;
+    top: 280px;
+    left: 50%;
+    width: 480px;
+    font-size: 14px;
+    margin-left: -240px;
+    color: #333333;
+    display: none;
+}
+.find-password-strength {
+    float: left;
+    width: 80px;
+    text-align: center;
+    margin-top: 8px;
+    color: #b0b0b0;
+    font-size: 12px;
+    padding-top: 2px;
+    margin-right: 5px;
+    border-top: #e8e8e8 2px solid;
+}
+.find-password-strength.active {
+    border-top: #ff0900 2px solid;
+    color: #ff0900;
+}
+.find-password-success {
+    position: absolute;
+    top: 320px;
+    left: 50%;
+    width: 400px;
+    font-size: 14px;
+    margin-left: -200px;
+    color: #333333;
+    display: none; 
+}

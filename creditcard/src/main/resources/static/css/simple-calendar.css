@@ -1,0 +1,173 @@
+/*html, body { width:\100%; height:100% ; padding:0; margin:0;font-family: Arial, "Microsoft YaHei"!important;font-size:13px;  color:#555;}
+div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, img, ins, kbd, q, s, samp, small, strike, strong, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, font {padding:0; margin:0; list-style-type: none; font-style:normal;}
+*/
+.sc-calendar {width: auto; height: 100%; text-align: center;font-family: Arial, "Microsoft YaHei"!important;color: #4A4A4A;
+ /* box-shadow: 2px 4px 5px #bdbdbd; border-width: 1px 0 0 1px;
+  border-color: #E6E4E0;
+  border-style: solid;*/
+  float: left;
+  margin-right: 0;
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  font-size: 16px;
+  background:#fff; padding-bottom:10px;
+}
+
+.sc-header {height: 35px; border-bottom: 0; background:orange; padding:5px 0;}
+.sc-body {height: 93%;clear: both;/*box-shadow: 2px 4px 5px #bdbdbd;*/}
+.sc-week {
+  font-weight: 400;
+  font-size: 20px;
+  color: #4A4A4A;
+}
+.sc-days {
+  height: 88%;
+}
+.sc-item {height: 18%;float: left; font-family: Arial, "Microsoft YaHei"!important; font-weight:100; color: #565555; width: 14.285%; padding-top: 9px;background-color: #ffffff;border: 2px solid transparent; box-sizing: border-box; border-radius: 6px; padding-bottom:10px;}
+.item-nolunar {
+  padding-top: 20px;
+}
+.sc-item:nth-child(7n) .day, .sc-item:nth-child(7n+6) .day {
+  color: rgba(224, 8, 8, 0.74);
+}
+.sc-vocation {
+  background-color: #FFEBEC;
+}
+.sc-mark{
+  background-color: #E5FBFA;
+}
+.sc-vocation:before {
+  content: '休';
+  display: block;
+  position: absolute;
+  font-size: 0.7em;
+  width: 1.2em;
+  font-weight: 100;
+  color: white;
+  background-color: #E00808;
+  margin-top: -10px;
+}
+.sc-othermenth {
+  color: #C1C0C0 !important;
+}
+.sc-othermenth .day, .sc-othermenth .lunar-day {
+  color: #C1C0C0 !important;
+}
+.sc-active-day, .sc-selected {
+  border: 2px solid orange;
+}
+.sc-today { border-radius:6px;
+  background-color: orange;
+  color: white;
+  border: 2px solid orange;
+}
+.sc-item .day {
+  font-size: 1.6em; padding-bottom:3px;font-weight: 100 !important;
+}
+.sc-today .day { font-size:1.6em;color: white !important; }
+.sc-today .lunar-day{ color:#fff !important; margin-top:0px; font-weight:100 !important;}
+.sc-item .lunar-day {
+  font-size: 82%;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sc-festival .lunar-day {
+  color: #E00808;
+}
+
+/*.sc-item:last-child, .sc-item:nth-child(7n) {
+  border-width: 0 1px 1px 1px;
+}*/
+
+.sc-week-item {height: 100%; padding:14px 0 10px 0;float: left; font-size:16px;width: 14.285%;background-color: #fff;box-sizing: border-box;overflow: hidden;text-overflow: ellipsis;}
+.sc-item-small{
+  font-size: 10px !important;
+}
+.sc-week-item:last-child {
+  border-width: 1px 1px 1px 1px;
+}
+.sc-week-item:nth-child(7n), .sc-week-item:nth-child(7n+6) {
+  color: rgba(224, 8, 8, 0.74)!important;
+}
+.sc-actions {
+  float: left;
+  width: 33.3%;
+  padding: 0px 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+.sc-actions:last-child {
+  float: right;
+}
+/*.sc-actions:nth-child(3){ float:right; width:auto;}*/
+/*.sc-actions .sc-yleft,.sc-actions .sc-yright{ display:none;}*/
+.sc-actions-big{
+  width: 50%;
+}
+@media screen and (max-width : 500px){
+/*.sc-header .sc-actions:nth-child(1){ width:100%;}*/
+.sc-actions{
+   width: 30%;
+}
+.sc-actions:nth-child(1){ width:34%}
+}
+.sc-actions:nth-child(3){ float:right; width:auto;}
+.sc-header select { float:left; width: auto;
+  border-color: rgba(0, 0, 0, 0);
+  padding: 0.2em 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: "Microsoft Yahei";
+  color: #fff; text-align:center;
+  font-size: 15px ; background:none; margin-top:-2px; padding-top:6px; padding-bottom:7px;
+}
+.sc-header select option{ color:#555; font-size:1em;}
+.sc-header input {
+  border-color: rgba(0, 0, 0, 0);
+  padding: 0.2em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: "Microsoft Yahei";
+  color: #606060;
+}
+.sc-actions div { float:left;
+  display: inline-block;
+  /*border: 1px solid #ccc;*/
+  vertical-align: middle;
+  width: 20px;
+  padding-top:5px;
+  padding-bottom: 10px;
+  font-size: 1.8em;
+  line-height:0.65em;
+  color:#fddfa8;
+}
+.sc-actions div.sc-yleft{ padding-left:10px;}
+.sc-actions div.sc-yright{ padding-right:5px;}
+.sc-actions div.sc-mleft{ padding-left:5px;}
+.sc-actions div.sc-mright{ padding-right:10px;}
+.sc-return-today {
+  display: block;
+  background-color: none;
+  border-radius: 2px;
+  /* border: 1px solid #ccc; */
+  width: 50px;
+  font-size: 0.9em;
+  padding: 0.3em 0; 
+  margin: auto;margin-top:-3px; padding-top:9px;
+   color:#fff;
+}
+
+.sc-time {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.8em;
+}

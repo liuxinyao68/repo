@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.CreditCardMapper">
+
+	<select id="queryCreditCardByCondition" resultType="CreditCard" parameterType="CreditCard">
+		select <include refid="columnSql"/> from CreditCard <include refid="selectConditionSql"/>
+	</select>
+	
+	<insert id="insertCreditCardByCondition" parameterType="CreditCard">
+		insert into CreditCard(<include refid="insertSql"/>) values <include refid="insertColunmSql"/>
+	</insert>
+	
+	<update id="updateCreditCartByCondition" parameterType="CreditCard">
+		update CREDITCARD <include refid="updateColnumSql"/>  
+	</update>
+	
+	<sql id="updateColnumSql">
+		<!-- UPDATETIME = , -->
+		<!-- set IF_MAIN = 1,STATE = 0,TOTALQUOTA = 5000,PAYPASSWORD='111111',IF_ACTIVATION = 0,TEMPORARYQUOTA=500,REPLACECARDNUMBER = '123' -->
+		<set>
+			<if test=" ifMain != null ">
+				IF_MAIN = #{ifMain},
+			</if>
+			<if test=" state != null ">
+				STATE = #{state},
+			</if>
+			<if test=" totalQuota != null ">
+				TOTALQUOTA = #{totalQuota},
+			</if>
+			<if test=" payPassword != null and payPassword != '' ">
+				payPassword = #{payPassword},
+			</if>
+			<if test=" ifActivation != null ">
+				IF_ACTIVATION = #{ifActivation},
+			</if>
+			<if test=" replaceCardNumber != null and replaceCardNumber != '' ">
+				REPLACECARDNUMBER = #{replaceCardNumber},
+			</if>
+			<if test=" updateTime != null ">
+				UPDATETIME = #{updateTime},
+			</if>
+			<if test=" ifDelete != null ">
+				IF_DELETE = #{ifDelete},
+			</if>
+		</set>
+		<include refid="selectConditionSql"/>
+	</sql>
+	
+	<sql id="insertColunmSql">
+		(seq_CREDITCARD.nextval,#{cardNumber},1,0,#{userId},#{createTime},#{updateTime},0,0,'111111',null,0,null,1,#{replaceCardNumber},'3','23')
+	</sql>
+	
+	<sql id="insertSql">
+		ID,CARDNUMBER,IF_MAIN,STATE,USER_ID,CREATETIME,UPDATETIME,IF_DELETE,TOTALQUOTA,PAYPASSWORD,ENABLESTARTTIME,IF_ACTIVATION,ENABLEENDTIME,VERSION,REPLACECARDNUMBER,"chu","huan"
+	</sql>
+
+	<sql id="columnSql">
+		ID id,CARDNUMBER cardNumber,IF_MAIN ifMain,STATE state,USER_ID userId,CREATETIME createTime,UPDATETIME updateTime,IF_DELETE ifDelete,TOTALQUOTA totalQuota,PAYPASSWORD payPassword,ENABLESTARTTIME enableStartTime,IF_ACTIVATION ifActivation,ENABLEENDTIME enableEndTime,VERSION version,REPLACECARDNUMBER replaceCardNumber,"chu" chu,"huan" huan
+	</sql>
+
+	<sql id="selectConditionSql">
+		<where>
+			IF_DELETE = 0
+			<if test=" id != null and id != '' ">
+				and id = #{id}
+			</if>
+			<if test=" cardNumber != null and cardNumber != '' ">
+				and CARDNUMBER = #{cardNumber}
+			</if>
+			<if test=" userId != null and userId != '' ">
+				and USER_ID = #{userId}
+			</if>	
+		</where>
+	</sql>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

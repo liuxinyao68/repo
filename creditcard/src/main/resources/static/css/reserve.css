@@ -1,0 +1,370 @@
+.ob-reserve-header {
+    position: absolute;
+    top:0px;
+    left: 0px;
+    right: 0px;
+    height: 50px;
+    background: #ffffff;
+    border: #e8e8e8 1px solid;
+    margin-top: -2px;
+    position: relative;
+    z-index: 100px;
+}
+.ob-reserve-item1 {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow-y: auto;
+}
+.ob-reserve-item1 > div > div > div {
+    color: #333333;
+}
+
+.reserve-fliter-img {
+    margin: 10px 25px;
+    padding: 0px;
+    cursor: pointer;
+}
+.reserve-fliter {
+    position: absolute;
+    top: 48px;
+    right: 0px;
+    width: 100px;
+    height: 102px;
+    background: #ffffff;
+    z-index: 1000;
+    border: #e8e8e8 1px solid;
+    display: none;
+}
+.reserve-fliter-item {
+    padding: 6px 0px 4px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #333333;
+}
+.reserve-fliter-item:hover {
+    background-color: #eeeeee;
+}
+.reserve-date-area {
+    position: absolute;
+    width: 770px;
+    left: 50%;
+    margin-left: -370px;
+}
+.reserve-date-item-o {
+    width: 12%;
+    text-align: center;
+    cursor: pointer;
+}
+.reserve-date-item {
+    width: 12%;
+    text-align: center;
+    cursor: pointer;
+}
+.reserve-date-item.active {
+    border-bottom: #ff8a00 2px solid;
+}
+.reserve-date-item.active .reserve-date-item-day, .reserve-date-item.active .reserve-date-item-date{
+    color: #ff8a00;
+}
+.reserve-date-item-day {
+    font-size: 15px;
+    color: #333333;
+    margin-top: 6px;
+}
+.reserve-date-item-date {
+    font-size: 12px;
+    color: #aaaaaa;
+    margin-bottom: 3px;
+}
+.reserve-buttom-btn {
+    border: #aaaaaa 1px solid;
+    background: #ffffff;
+    border-radius: 2px;
+    margin: 12px 12px 0px 0px;
+}
+.ob-reserve-body {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin-left: -400px;
+    width: 800px;
+    height: 240px;
+    /* border-bottom: #bbbbbb 1px solid; */
+}
+.ob-reserve-bottom {
+    position: absolute;
+    top: 210px;
+    left: 50%;
+    margin-left: -310px;
+    width: 690px;
+}
+.ob-reserve-input {
+    width: 100%;
+    height: 45px;
+}
+.ob-reserve-input-title {
+    font-size: 16px;
+    width: 70px;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+.ob-reserve-input-input {
+    width: 280px !important;
+    height: 35px !important;
+    font-size: 14px !important;
+    position: relative;
+}
+.ob-reserve-item2-header {
+    background: #f0f0f0;
+    width: 100%;
+    height: 38px;
+    text-align: center;
+    color: #999999;
+    padding-top: 5px;
+    font-size: 18px;
+    position: relative;
+}
+.ob-reserve-item2-item {
+    width: 100%;
+    height: 50px;
+    background: #ffffff;
+    border-left: #d8d8d8 1px solid;
+}
+.ob-reserve-item2-area > .ob-reserve-item2-item:nth-child(odd) {
+    background: #f5f5f5;
+}
+.ob-reserve-item2-item.active{
+    background: #fff1cc !important;
+}
+.ob-reserve-item2-item.active > div, .ob-reserve-item2-item.active > div > span {
+    /* color: #ffffff !important; */
+}
+.ob-reserve-item3-item:hover {
+    background: #fff1cc !important;
+}
+#ob-reserve-item3 > .ob-reserve-item3-item:nth-child(odd) {
+    background: #f5f5f5;
+}
+.ob-reserve-item3-item:hover > div, .ob-reserve-item3-item:hover > div > span {
+    /* color: #ffffff !important; */
+}
+.ob-reserve-item2-item0 {
+    padding: 13px 2px 0px 0px;
+    font-size: 16px;
+    color: #333333;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.ob-status-btn-area {
+    width: 102px;
+    height: 102px;
+    float: left;
+    margin: 10px;
+    padding: 10px;
+    padding-top: -2px;
+    position: relative;
+}
+.ob-status-btn {
+    width: 102px;
+    height: 102px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.ob-status-btn .zhuohao {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+}
+.ob-status-btn .money1 {
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    right: 10px;
+    padding-top: 10px;
+    color: #fcff00;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 800;
+    border-top: #ffffff 1px solid;
+}
+.ob-status-btn .money2 {
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    right: 10px;
+    padding-top: 10px;
+    color: #ffffff;
+    text-align: right;
+    font-size: 14px;
+    border-top: #ffffff 1px solid;
+}
+.ob-status-btn .status1 {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+}
+.ob-status-btn .status2 {
+    position: absolute;
+    top: 36px;
+    padding-top: 10px;
+    left: 10px;
+    font-weight: 800;
+    font-size: 14px;
+}
+.ob-status-btn .people {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+}
+.ob-kongxian {
+    color: #005308;
+    background: url("../img/kongxian.png") -2px;
+}
+.ob-kongxian:hover {
+    color: #005308;
+    background: url("../img/kongxian-active.png") -2px;
+}
+.ob-jiezhang {
+    color: #ffffff !important;
+    background: url("../img/jiezhang.png") -2px;
+}
+.ob-jiezhang:hover {
+    color: #ffffff !important;
+    background: url("../img/jiezhang-active.png") -2px;
+}
+.ob-shiyong {
+    color: #ffffff !important;
+    background: url("../img/shiyong.png") -2px;
+}
+.ob-shiyong:hover {
+    color: #ffffff !important;
+    background: url("../img/shiyong-active.png") -2px;
+}
+.ob-yuding {
+    color: #ffffff !important;
+    background: url("../img/yuding.png") -2px;
+}
+.ob-yuding:hover {
+    color: #ffffff !important;
+    background: url("../img/yuding-active.png") -2px;
+}
+.ob-reserve-check {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    font-size: 14px;
+    padding-left: 4px;
+    color: #ffffff;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+.ob-reserve-check .ob-jiezhang {
+    background: #844fad;
+}
+.ob-reserve-check .ob-kongxian {
+    background: #79c22b;
+}
+.ob-reserve-check > img {
+    position: absolute;
+    top: 0.5px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+}
+.ob-reserve-check .ob-shiyong {
+    background: #ec3333;
+}
+.ob-reserve-check .ob-yuding {
+    background: #eea400;
+}
+.ob-reserve-item3-header-item {
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    cursor: pointer;
+}
+.ob-reserve-item3-item {
+    font-size: 16px;
+    height:60px;
+    padding-top:20px;
+    text-align: center;
+    background: #ffffff;
+}
+.ob-reserve-select {
+    position: absolute;
+    top: 15px;
+    left: 40px;
+    width: 70px;
+    font-size: 14px;
+    color: #333333;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+.ob-reserve-select-area {
+    position: absolute;
+    top: 7px;
+    left: 30px;
+    width: 80px;
+    z-index: 999;
+    padding-top: 32px;
+    background: #ffffff;
+    border: #aaaaaa 1px solid;
+}
+.ob-reserve-select-item {
+    width: 100%;
+    padding: 3px 3px 3px 10px;
+    cursor: pointer;
+}
+.ob-reserve-select-item:hover {
+    background-color: #eeeeee;
+}
+.layui-laydate-x {
+    position: absolute;
+    top:13px;
+    right: 10px;
+    cursor: pointer;
+}
+.laydate-btns-confirm:hover {
+    color: #000000 !important;
+}
+.ob-reserve-footer-select-area {
+    position: absolute;
+    bottom: 12px;
+    left: 115px;
+    width: 80px;
+    z-index: 999;
+    font-size: 16px;
+    padding-bottom: 28px;
+    border: #aaaaaa 1px solid;
+    background: #ffffff;
+    display: none;
+}
+.ob-reserve-footer-select-item {
+    width: 100%;
+    padding: 3px 3px 3px 10px;
+    cursor: pointer;
+}
+.ob-reserve-footer-select-item:hover {
+    background-color: #eeeeee;
+}
+#ob-calendar-months > div {
+    padding-right: 38px;
+}
+input[type='checkbox'] {
+    border: #aaaaaa 1px solid;
+}
+.ob-reserve-item3-header-item > img {
+    display: none;
+}

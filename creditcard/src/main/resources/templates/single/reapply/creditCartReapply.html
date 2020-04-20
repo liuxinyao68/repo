@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>补办信用卡</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/frame.css">
+        <link rel="stylesheet" href="/css/addClass.css">
+        <style type="text/css">
+            .maindir{
+                width: 1000px;
+                margin-left: : 50px;
+                text-align: center;
+            }
+            tr{
+                height: 50px;
+                text-align: center;
+            }
+            .changepwd{
+              width: 700px;
+              text-align: center;
+              margin-left: center;
+            }
+        </style>
+    </head>
+    <body>
+        <dir id="maindir" class="maindir">
+           <table class="cardlist" id="cardlist" style="width: 800px; text-align: center;" border="1px" >
+               <tr style="font-weight: bold;">
+                   <td>信用卡序号</td>
+                   <td>卡号</td>
+                   <td>是否为主卡</td>
+                   <td>卡状态</td>
+                   <td>办卡时间</td>
+                   <td>总额度</td>
+                   <td>原来的卡</td>
+               </tr>
+               <tr >
+                   <td><span th:text="${creditCard?.id}">2131431</span></td>
+                   <td><span th:text="${creditCard?.cardNumber}">2131431</span></td>
+                   <td><span th:text="${creditCard?.ifMain}">2131431</span></td>
+                   <td><span th:text="${creditCard?.state}">2131431</span></td>
+                   <td><span th:text="${creditCard?.createTime}">2131431</span></td>
+                   <td><span th:text="${creditCard?.totalQuota}">2131431</span></td> 
+                   <td><span th:text="${creditCard?.replaceCardNumber}">2131431</span></td>
+               </tr>
+           </table>
+           <div id="changepwd" class="changepwd">
+            <h2>补办信用卡</h2>
+              <form id="changePasswdForm" action="/confirmReapply.do" method="post">
+              <input type="hidden" id="id" name="id" th:value="${creditCard.id}" />
+              <input type="hidden" name="code" id="code" />
+              <span th:text="${message}" style="color: red;" name="message" id="message"></span>
+                <table>
+                  <tr>
+                    <td>支付密码：</td>
+                    <td><input type="" name="paypassword"></td>
+                  </tr>
+                  <tr>
+                    <td>电话号码：</td>
+                    <td><input type="" name="phone"></td>
+                  </tr>
+                  <tr>
+                    <td>验证码：</td>
+                    <td><input type="" name="phonecode"></td>
+                    <td><input type="button" value="获取验证码" onclick="getCode()"></td>
+                  </tr>
+                </table>   
+                <input type="submit" value="确定补办">
+              </form>           
+            </div>
+        </dir>
+    </body>
+    <script src="/js/plugin/jquery/jquery.js"></script>
+    <script src="/js/frame-base.js"></script>
+    <script type="text/javascript">
+    function getCode(){
+		/* var id = document.getElementById("id").value();
+		var phone = document.getElementById("phone");
+		var phonecode = document.getElementById("phonecode"); */
+		var id = $("#id").val();
+		var phone = $("#phone").val();
+		$.ajax({
+	        url:"/getPhoneCode.do",	
+	        type:"post",
+	        dataType: "json",	
+	        data:{id: id,phone:phone},
+			success: function(rs){
+			//最后将数据返回到这里，通过js显示在页面
+				if(rs == false){
+					$("#message").text("你的默认手机号有误");
+				}else{
+					$("#code").val(rs);
+				}
+			}
+	    })
+	}
+    </script>
+</html>

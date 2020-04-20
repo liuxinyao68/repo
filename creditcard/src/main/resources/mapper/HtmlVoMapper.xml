@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.HtmlVoMapper">
+
+	<select id="queryStageUserInfoVOByCondition" resultType="StageUserInfoVO">
+		select 
+			C.*,D.id stageId,D.TOTALMONEY totalmoney,D.TOTALMONTH totalmonth,D.RATE,D.MONTHSEND,D.ENDSEND_MONTHNUM endsendMonthnum,D.REMINDNUM,D.CREATETIME,D.UPDATETIME 
+		from 
+			( 
+				select 
+					A.id cardId ,A.cardnumber cardnumber,B.realname realname,B.idcardnumber idcardnumber,B.phone phone,B.if_blackname ifBlackname
+				from 
+					creditcard A,userinfo B 
+				where 
+					A.user_id = B.id and A.if_delete =0 and B.if_delete = 0 
+				) C , bystages D 
+		where 
+			C.cardid = D.cred_id and D.if_delete =0
+	</select>
+	
+	<select id="queryCount" resultType="Count">
+		select count(*) count from bystages
+	</select>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

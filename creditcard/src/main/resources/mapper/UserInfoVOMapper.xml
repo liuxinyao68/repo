@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.UserInfoVOMapper">
+
+	<select id="queryCreditcardAndUserinfoByCondition" resultType="com.example.demo.vo.UserInfoVO" parameterType="com.example.demo.vo.UserInfoVO">
+		select <include refid="creditcardAndUserinfoColumnSql"/> from creditcard A,userinfo B <include refid="selectCreditcardAndUserinfoColumnSqlConditionSql"/>
+	</select>
+	
+	<select id="queryBillingDateByCondition" resultType="com.example.demo.vo.UserInfoVO" parameterType="com.example.demo.vo.UserInfoVO">
+		select <include refid="billingDateColumnSql"/> from billingDate <include refid="selectBillingDateColumnSqlConditionSql"/>
+	</select>
+	
+	<sql id="billingDateColumnSql">
+		surplusquota,temporaryquota,surplustemporaryquota,spending,arrearage,withdraw,charge
+	</sql>
+	
+	<sql id="selectBillingDateColumnSqlConditionSql">
+		<where>
+			<if test=" cardId != null and cardId != '' ">
+				and card_id = #{cardId}
+			</if>
+		</where>
+	</sql>
+
+	<sql id="creditcardAndUserinfoColumnSql">
+		A.id cardId, A.user_id userId ,A.cardnumber cardnumber,A.state state,A.createtime createtime,A.totalquota totalquota,A.if_activation ifActivation,B.realname realname,B.authscore authscope,B.authgrade authgrade,B.idcardnumber idcartnumber,B.phone phone,B.applystate applystate,B.if_blackname ifBlackname
+	</sql>
+	
+	<sql id="selectCreditcardAndUserinfoColumnSqlConditionSql">
+		<where>
+			A.user_id = B.id
+			and A.if_delete = 0
+			and B.if_delete = 0
+			<if test=" cardnumber != null and cardnumber != '' ">
+				and cardnumber = #{cardnumber}
+			</if>
+			<if test=" realname != null and realname != '' ">
+				and realname = #{realname}
+			</if>
+			<if test=" idcartnumber != null and idcartnumber != '' ">
+				and idcardnumber = #{idcartnumber}
+			</if>
+		</where>
+	</sql>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

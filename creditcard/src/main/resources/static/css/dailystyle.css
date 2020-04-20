@@ -1,0 +1,124 @@
+
+
+.smlb {
+    font-size: 20px; color: white; float: right; margin-right: 13%; margin-top: -54%;
+}
+table,td,tr { padding:0;    border-spacing: 0;
+    border-color: grey;}
+.aorange {
+   font-weight: bold; font-size: 20px; color: #fb493e; width:57px;
+}
+.day {
+   font-size: 18px; color: #333; 
+}
+.day td{
+  color:#9F9E9E;
+}
+.one {
+   font-weight: normal; font-size: 20px; color: #555; width:57px;
+}
+.bs {
+   font-size: 12px; color: #555;width:57px;
+}
+.lb {
+   font-size: 16px; color: #0099ff
+}
+.sm {
+   font-size: 14px; color: #333399
+}
+.smz {
+   font-weight: bold; font-size: 14px; color: #0099ff
+}
+
+
+#cal-content{
+   height:40;text-align: center;background-color:"#FAFBFB";
+
+}
+.detallu{
+   width:100%; border:0; padding:2px; color: white;
+   
+}
+.lnotice{
+  margin-top: 34%;
+}
+#detail{
+   margin-top: 31px;text-align: center;background-color: #2EBEB7;
+}
+#oTime{
+  color: white ;text-align: center;font-family: 
+}
+
+.sm span{
+  color: black;
+
+}
+.thead span{
+   color: #2EBEB7;
+
+}
+#clock{
+    font-family: courier;margin-top: -23%;padding-bottom: 5%;
+  }
+
+
+
+/*年份，月份切换*/
+.year_select{
+  display:inline-block;padding-right: 23px;
+}
+.home_select{
+  display:inline-block; padding-right: 18px;
+}
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+.ch{
+  background-color:#ffa500;
+}
+.day td{
+  width:57px;color:white; text-align:center;
+}
+select {
+  margin-bottom: 9px; appearance: none;-moz-appearance: none;-webkit-appearance: none;border: 0; border-radius: 2px; color: #333; padding-top: 6px; background-color: white; padding-bottom: 2px;
+}
+
+
+
+/*日历头部*/
+
+.table_head{
+    background-color:orange;width: 100%;text-align: center;
+  }
+
+.week{
+   border-spacing: 0;   
+}
+
+
+div.tishishgen0{ 
+  text-align:center; margin:50px 0 10px 0; color:#666
+}
+
+div.shenbox {
+    margin-top: 20px;
+}
+ {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: "microsoft yahei",Times New Roman;}
+
+.dayimtimeboxcoent{ background:#fff;}
+.dayimtimeboxcoent .table_head td{ color:#fff; padding:0; padding-bottom:0px;}
+.dayimtimeboxcoent .year_select{ float:left; padding:0;}
+.dayimtimeboxcoent .month_select{ float:right;padding:0;}
+.dayimtimeboxcoent  .home_select{ text-align:center; color:#fff; padding:11px; font-size:16px;}
+
+.dayimtimeboxcoent .table_head  .ltico{ float:left; padding:12px 9px 6px 12px;}
+.dayimtimeboxcoent .table_head  .ltico i{ display:block; width:12px; height:18px; background:url(../images/distablediv_ltico_img.png) center no-repeat;}
+.dayimtimeboxcoent .table_head  .rgico{ float: right;padding:12px 9px 6px 12px;}
+.dayimtimeboxcoent .table_head  .rgico i{ display:block; width:12px; height:18px; background:url(../images/distablediv_rgico_img.png) center no-repeat;}
+.dayimtimeboxcoent .table_head .dayselectbo{ float:left; margin:0; padding:10px 0px 12px 0;appearance:none;-moz-appearance:none; font-size:16px;-webkit-appearance:none; color:#fff;/*将背景改为绿色*/background: none;}
+.dayimtimeboxcoent .cindeonsxn td{ padding:8px 0; background:#fff; font-size:17px; color:#333;}
+.dayimtimeboxcoent .daylistvin td{ padding-bottom:9px; border-radius:0 0 5px 5px; font-size:13px; word-break:keep-all; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.dayimtimeboxcoent .daylistdate td{ font-size:2em; padding-top:9px; padding-bottom:3px; border-radius:5px 5px 0 0; overflow:hidden;}

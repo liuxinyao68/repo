@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>后台管理系统</title>
+    <meta name="keywords" content="信用卡后台管理系统">
+    <meta name="description" content="信用卡后台管理系统">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/frame.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/merchant.css">
+    <link rel="stylesheet" href="css/addClass.css">
+    <link rel="stylesheet" href="js/bootstrap-3.3.2-dist/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/core.css" type="text/css" />
+    <script type="text/javascript" src="js/jquery/jquery-2.1.3.js"></script>
+	<script type="text/javascript" src="js/bootstrap-3.3.2-dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/jquery.bootstrap.min.js"></script> 
+	<script type="text/javascript" src="js/plugin/jquery-validation/jquery.validate.js"></script>
+	<script type="text/javascript" src="js/plugin/jquery-validation/localization/messages_zh.js"></script>
+	<script type="text/javascript" src="js/plugin/jquery.form.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script>
+	$(function() {
+		
+		//jquery的validate框架, 一个表单验证框架
+		//表单验证方法: validate({验证的规则})
+		// rules: 验证规则: 非空, 长度, 正则表达式 , 远程验证, 两次密码是否一致....
+		$("#loginForm").validate({
+			rules : {
+				id : {
+					required : true,
+					rangelength : [ 1, 16 ]
+				},
+				password : {
+					required : true,
+					rangelength : [ 4, 16 ]
+				},
+				phone : {
+					required : true,
+					rangelength : [ 11,11]
+				},
+				code : {
+					required : true,
+				},
+				phonecode : {
+					required : true,
+				}
+			},
+			messages : {
+				id : {
+					required : "账号不能为空",
+					rangelength : "用户名必须是{0}-{1}位"
+				},
+				password : {
+					required : "密码不能为空",
+					rangelength : "密码必须是{0}-{1}位"
+				},
+				phone : {
+					required : "手机号不能为空",
+					rangelength : "手机号必须是{0}位"
+				},
+				code : {
+					required : "未获取验证码",
+				},
+				phonecode : {
+					required : "手机号验证码不能为 空",
+				}
+			},
+			submitHandler : function(form) {
+				//ajax请求, 把表单以ajax提交到后台
+				$(form).ajaxSubmit({
+					dataType:"json",
+					success:function(rs){
+						
+						if(rs.success){
+							//跳转到个人中心
+							//alert("登录成功");
+							
+							location.href="/index.do";
+						
+						}else{
+							
+							$.messager.alert("友情提示",rs.msg); 
+						}
+					},
+					resetForm:true
+				});
+			},
+			errorClass : "text-danger",
+			highlight : function(element) {
+				$(element).closest("div.form-group").addClass("has-error");
+			},
+			unhighlight : function(element) {
+				$(element).closest("div.form-group").removeClass("has-error");
+			}
+		});
+	});
+	
+	function getCode(){
+		/* var id = document.getElementById("id").value();
+		var phone = document.getElementById("phone");
+		var phonecode = document.getElementById("phonecode"); */
+		var phone = $("#phone").val();
+		$.ajax({
+	        url:"/getCode.do",	
+	        type:"post",
+	        dataType: "json",	
+	        data:{phone:phone},
+			success: function(rs){
+			//最后将数据返回到这里，通过js显示在页面
+				if(rs == false){
+					$("#message").text("你的默认手机号有误");
+				}else{
+					$("#code").val(rs);
+				}
+			}
+	    })
+	}
+</script>
+</head>
+<body>
+    <a href="login.html"><img class="login-logo" src="img/logo.png"></a>
+    <a class="login-change" href="login.html">PC客户端 <span>&nbsp; | &nbsp;</span> 手机客户端</a>
+    <div class="login-title default"></div>
+    <div class="login-name">管理员登录</div>
+    <div class="login-form-area">
+    <form id="loginForm" action="/loginAdmin.do" method="post">    
+        <input type="hidden" name="code" id="code" />
+        <div class="login-input">
+   
+            <label for="">账&nbsp;&nbsp;&nbsp;号：</label>
+            <input class="ob-form login-form-user" type="text" name="id">
+        </div>
+        <div class="login-input">
+            <label for="">密&nbsp;&nbsp;&nbsp;码：</label>
+            <input class="ob-form login-form-user" type="password" name="password">
+        </div>
+         <div class="login-input">
+            <label for="">手&nbsp;&nbsp;&nbsp;机：</label>
+            <input class="ob-form login-form-vc" type="text" name="phone" id="phone">
+          
+            <div class="ob-form login-vc code-input btn-s" onclick="getCode()">发送验证码</div>
+        </div>
+        <div class="login-input">
+            <label for="">验证码：</label>
+            <input class="ob-form login-form-tx" type="text" placeholder="手机码" name="phonecode">
+            <!-- <input class="ob-form login-form-tx" type="text" placeholder="图形码" name="photocode">
+            <input value="xa99" class="ob-form login-vc yzm" type="text" disabled> -->
+        </div>
+         <!-- <div class="login-input">
+            <span class="errorInfo" id="message" class="message"></span>
+        </div> -->
+        <button class="btn order-food-menu-btn login-btn " >登录</button>
+    </form> 
+     
+
+    </div>
+    <!-- <div class="login-footer clearfix">Copyright © 2017 点菜宝贝 Diancai Baobei.com  All Rights Reserved. 
+        <img class="ybs" style="cursor: pointer;" src="img/login_jj.jpg" width="57" height="42" alt="">
+    </div> -->
+</body>
+
+</html>

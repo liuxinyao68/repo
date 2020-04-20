@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.CartApplicationMapper">
+
+	<select id="queryCartApplicationByCondition" resultType="CartApplication">
+		select <include refid="columnSql"/>  from applyinfo A ,userinfo B where A.id = B.applyInfo_id(+) and A.IF_DELETE = 0
+	</select>
+
+	<sql id="columnSql">
+		row_number()over(order by A.id) id, A.id applyid,A.CONTACTNAME name,B.realName realname,A.contactPhone phone,B.idCardNumber cartnumber,A.email email,A.homeaddress address,A.sendCardAddress sendaddress,A.education_id education,A.marriage_id marriage,A.ifhave_room ifhaveroom,A.unitName unitname,A.job job,A.companyAddress companyaddress,A.updatetime createtime
+	</sql>
+	
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.LoginInfoMapper">
+
+	<select id="queryLoginInfoByCondition" resultType="LoginInfo" parameterType="LoginInfo">
+		select <include refid="columnSql"/> from LoginInfo <include refid="selectConditionSql"/>
+	</select>
+	
+	<insert id="insertLoginInfoByCondition" parameterType="LoginInfo">
+		insert into logininfo(<include refid="columnSql"/>) values <include refid="insertColunmSql"/>
+	</insert>
+	
+	<sql id="insertColunmSql">
+		(seq_logininfo.nextval,#{phone},#{password},#{state},#{usertype},#{createtime},#{updatetime},#{ifDelete})
+	</sql>
+
+	<sql id="columnSql">
+		id,phone,password,state,usertype,createtime,updatetime,if_Delete
+	</sql>
+
+	<sql id="selectConditionSql">
+		<where>
+			<if test=" id != null ">
+				and id = #{id}
+			</if>
+			<if test=" phone != null and phone != '' ">
+				and phone = #{phone}
+			</if>
+			<if test=" password != null and password != '' ">
+				and password = #{password}
+			</if>
+			<if test=" state != null and state != '' ">
+				and state = #{state}
+			</if>
+			<if test=" usertype != null and usertype != '' ">
+				and usertype = #{usertype}
+			</if>
+			<if test=" createtime != null and createtime != '' ">
+				and createtime = #{createtime}
+			</if>
+			<if test=" updatetime != null and updatetime != '' ">
+				and updatetime = #{updatetime}
+			</if>
+			<if test=" ifDelete != null and ifDelete != '' ">
+				and if_Delete = #{ifDelete}
+			</if>
+		</where>
+	</sql>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

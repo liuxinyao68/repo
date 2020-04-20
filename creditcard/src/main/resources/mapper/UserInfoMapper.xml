@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.UserInfoMapper">
+
+	<select id="queryUserInfoByCondition" resultType="UserInfo" parameterType="UserInfo">
+		select <include refid="columnSql"/> from UserInfo <include refid="selectConditionSql"/>
+	</select>
+	
+	<select id="queryCountOfUserInfo" resultType="Count" >
+		select count(*) count from userinfo 
+	</select>
+	
+	<sql id="">
+		<where>
+			if_Delete = 0
+			<if test=" id != null and id != '' ">
+				and IF_BLACKNAME = #{ifBlackName}
+			</if>
+		</where>	
+	</sql>
+	
+	<select id="queryBalckUserInfoByPage" resultType="UserInfo" parameterType="Page">
+		select *
+		from(
+			select rownum rn,ui.* from USERINFO ui where rownum &lt;= #{endNo} and  IF_BLACKNAME =1 and if_Delete = 0) ua
+		where ua.rn &gt;= #{startNo} 
+	</select>
+	
+	<select id="queryAllUserInfoByPage" resultType="UserInfo" parameterType="Page">
+		select *
+		from(
+			select rownum rn,ui.* from USERINFO ui where rownum &lt;= #{endNo} and if_Delete = 0) ua
+		where ua.rn &gt;= #{startNo} 
+	</select>
+	
+	<insert id="insertUserInfoByCondition" parameterType="UserInfo">
+		insert into UserInfo(<include refid="columnSql"/>) values <include refid="insertColunmSql"/>
+	</insert>
+	
+	<sql id="insertColunmSql">
+		(seq_userinfo.nextval,#{realname},#{idcardnumber},#{phone},#{createtime},#{updatetime},#{citynow})
+	</sql>
+
+	<sql id="columnSql">
+		id,realname,idcardnumber,phone,createtime,updatetime,cityNow
+	</sql>
+
+	<sql id="selectConditionSql">
+		<where>
+			<if test=" id != null and id != '' ">
+				and id = #{id}
+			</if>
+			<if test=" version != null and version != '' ">
+				and version = #{version}
+			</if>
+			<if test=" bitstate != null and bitstate != '' ">
+				and bitstate = #{bitstate}
+			</if>
+			<if test=" authscore != null and authscore != '' ">
+				and authscore = #{authscore}
+			</if>
+			<if test=" authgrade != null and authgrade != '' ">
+				and authgrade = #{authgrade}
+			</if>
+			<if test=" realname != null and realname != '' ">
+				and realname = #{realname}
+			</if>
+			<if test=" idcardnumber != null and idcardnumber != '' ">
+				and idcardnumber = #{idcardnumber}
+			</if>
+			<if test=" phone != null and phone != '' ">
+				and phone = #{phone}
+			</if>
+			<if test=" createtime != null ">
+				and createtime = #{createtime}
+			</if>
+			<if test=" updatetime != null ">
+				and updatetime = #{updatetime}
+			</if>
+			<if test=" ifDelete != null and ifDelete != '' ">
+				and if_Delete = #{ifDelete}
+			</if>
+			<if test=" citynow != null and citynow != '' ">
+				and citynow = #{citynow}
+			</if>
+			<if test=" applyinfoId != null and applyinfoId != '' ">
+				and applyinfo_Id = #{applyinfoId}
+			</if>
+			<if test=" applystate != null and applystate != '' ">
+				and applystate = #{applystate}
+			</if>
+			<if test=" ifBlackname != null and ifBlackname != '' ">
+				and if_Blackname = #{ifBlackname}
+			</if>
+		</where>
+	</sql>
+	
+	
+	<update id="updateUserInfoByCondition" parameterType="UserInfo">
+		update UserInfo  <include refid="updatePartSql"/>  <include refid="selectUpdateConditionSql"/>
+	</update>
+	
+	<sql id="updatePartSql">
+		<set>
+			<if test=" version != null and version != '' ">
+				version = #{version},
+			</if>
+			<if test=" bitstate != null and bitstate != '' ">
+				bitstate = #{bitstate},
+			</if>
+			<if test=" authscore != null and authscore != '' ">
+				authscore = #{authscore},
+			</if>
+			<if test=" authgrade != null and authgrade != '' ">
+				authgrade = #{authgrade},
+			</if>
+			<if test=" realname != null and realname != '' ">
+				realname = #{realname},
+			</if>
+			<if test=" phone != null and phone != '' ">
+				phone = #{phone},
+			</if>
+			<if test=" updatetime != null ">
+				updatetime = #{updatetime},
+			</if>
+			<if test=" citynow != null and citynow != '' ">
+				citynow = #{citynow},
+			</if>
+			<if test=" applyinfoId != null and applyinfoId != '' ">
+				applyinfo_Id = #{applyinfoId},
+			</if>
+			<if test=" ifBlackname != null and ifBlackname != '' ">
+				if_Blackname = #{ifBlackname},
+			</if>
+			<if test=" applystate != null and applystate != '' ">
+				applyinfoId = #{applyinfoId},
+			</if>
+		</set>
+	</sql>
+	
+	<sql id="selectUpdateConditionSql">
+		<where>
+			<if test=" id != null and id != '' ">
+				and id = #{id}
+			</if>
+			<if test=" idcardnumber != null and idcardnumber != '' ">
+				and idcardnumber = #{idcardnumber}
+			</if>
+		</where>
+	</sql>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

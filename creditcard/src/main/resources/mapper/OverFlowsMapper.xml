@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.OverFlowsMapper">
+
+	<select id="queryAOverFlowsByCondition" resultType="OverFlows" >
+		select <include refid="columnSql"/> from OverFlows <include refid="selectConditionSql"/>
+	</select>
+	
+	<sql id="columnSql">
+		ID id,VERSION version,totalinterest,username,idcard,creditcard_id creditcardId,phone,address,repay,needpay,createtime,updatetime,if_delete ifDelete
+	</sql>
+	
+	<sql id="selectConditionSql">
+		<where>
+			if_delete = 0
+		</where>
+	</sql>	
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

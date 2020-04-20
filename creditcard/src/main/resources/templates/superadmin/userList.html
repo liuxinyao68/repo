@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>用户列表</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-
+
+scale=1.0">
+<link rel="stylesheet" th:href="@{../bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{../css/frame.css}">
+<link rel="stylesheet" th:href="@{../css/addClass.css}">
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<style>
+.table-wrapper .table td label {
+	width: 40px;
+	text-align: left;
+}
+</style>
+<script type="text/javascript">
+	$(function(){
+		//全选
+		$("#all").click(function() {
+			$("input[name = ids]").prop("checked",$(this).prop("checked"));
+		});
+		 //批量删除
+		 $("#batchDel").click(function(){
+			//获取所有选择的元素
+			if($("input[name=ids]:checked").size() > 0){ //有选中
+				//发送一个请求给后台
+				//得到form表单中的数据
+				var formValues = $("#userListForm").serialize();
+				 $.ajax({
+					url:"batchDeletUser",
+					//要发送的数据
+					data:formValues,
+					//post请求发送
+					method:"post",
+					//返回参数为json数据
+					dataType:"json",
+					//回调函数
+					success:function(rs){
+						//判断success的值是否为success 是则登录成功
+						if (rs.success) {
+							//跳转页面
+							window.location.href = "yuanGong";
+						}
+					}
+				});
+			}else{  //没有选中
+				alert("请选择要删除的用户");
+			}
+		 });
+		
+	});
+
+	 function exampleRole(m) {
+			location.href="exampleRole?id=m";
+	}
+	
+	function queryData(num) {
+		$("#pi").val(num);
+		//1.提交表单
+		$("#queryForm").submit();
+	}
+	
+</script>
+
+</head>
+
+<body>
+	<div class="frame-header">
+		<span class="page-reload cur">员工管理</span>
+	</div>
+	<!--操作栏-->
+	<div class="operates clearfix"
+		style="overflow: auto; white-space: nowrap; font-size: 0;">
+
+		<form th:action="@{'/yuanGong'}" id="queryForm">
+			<div class="pull-left left-inp defualt">
+				<input type="text" class="pull-left" style="margin-left: 10px;"
+					placeholder="工号" name = "id" th:value="${yuanGongVo.id}"> 
+					<input type="text" class="pull-left"
+					style="margin-left: 10px;" placeholder="电话" name="phone" th:value="${yuanGongVo.phone}">
+				<button type="submit" class="btn delete pramary">查询</button>
+			</div>
+
+		</form>
+		<div class="footer" style="text-align: right;">
+			<button type="button" class="btn btn-danger" id="batchDel">批量删除</button>
+		</div>
+		
+	</div>
+	<!--表格-->
+	<div class="table-wrapper pl27 " style="min-width: 1000px;">
+		<form action="" id="userListForm">
+			<table class="table text-center">
+				<thead>
+					<tr>
+						<th class="yt" style="width: 5%;"><input id="all"
+							type="checkbox">全选</th>
+						<th class="sort cur" style="width: 10%;">工号<img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th class="sort cur" style="width: 13%;">密码 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th style="width: 14%;" class="sort cur">电话 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th style="width: 14%;" class="sort cur">用户类型(1为管理员)<img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th style="width: 10%;" class="sort cur">创建时间 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th style="width: 9%;" class="sort cur">更新时间 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th style="width: 10%;" class="sort cur">是否删除,0不删,1为删 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th class="sort cur" style="width: 10%;">操作 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="LoginInfo:${userInfo}">
+						<td><input type="checkbox" name="ids"
+							th:value="${LoginInfo.id}" /></td>
+						<td th:text="${LoginInfo.id}"></td>
+						<td th:text="${LoginInfo.password}"></td>
+						<td th:text="${LoginInfo.phone}"></td>
+						<td th:text="${LoginInfo.usertype}"></td>
+						<td th:text="${#dates.format(LoginInfo.createtime,'yyyy-MM-dd')}"></td>
+						<td th:text="${#dates.format(LoginInfo.updatetime,'yyyy-MM-dd')}"></td>
+						<td th:text="${LoginInfo.ifDelete}"></td>
+						<td><a th:href="@{/queryGoodById(id=${LoginInfo.id})}">修改</a>|
+							<a th:href="@{/deletLogin(id=${LoginInfo.id})}">删除 </a></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</form>
+		<!--显示分页信息-->
+		<div class="modal-footer no-margin-top">
+			<div class="col-md-6">当前第 [[${pageInfo.pageNum}]]页,共
+				[[${pageInfo.pages}]] 页.一共 [[${pageInfo.total}]] 条记录</div>
+
+			<ul class="pagination pull-right no-margin">
+				<li th:if="${pageInfo.hasPreviousPage}"><a
+					th:href="@{'/yuanGong?pageNum=1'}">首页</a></li>
+
+				<li class="prev" th:if="${pageInfo.hasPreviousPage}"><a
+					th:href="@{'/yuanGong?pageNum='+${pageInfo.prePage}}"> <i
+						class="ace-icon fa fa-angle-double-left"></i>
+				</a></li>
+				<!-- 遍历条数 -->
+				<li th:each="nav:${pageInfo.navigatepageNums}"><a
+					th:href="@{'/yuanGong?pageNum='+${nav}}" th:text="${nav}"
+					th:if="${nav != pageInfo.pageNum}"></a> <span
+					style="font-weight: bold; background: #6faed9;"
+					th:if="${nav == pageInfo.pageNum}" th:text="${nav}"></span></li>
+
+				<li class="next" th:if="${pageInfo.hasNextPage}"><a
+					th:href="@{'/yuanGong?pageNum='+${pageInfo.nextPage}}"> <i
+						class="ace-icon fa fa-angle-double-right"></i>
+				</a></li>
+
+				<li><a th:href="@{'/yuanGong?pageNum='+${pageInfo.pages}}">尾页</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="../plugin/jquery/jquery.js"></script>
+<script src="../js/frame-base.js"></script>
+
+</html>

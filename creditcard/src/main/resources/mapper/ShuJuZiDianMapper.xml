@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.ShuJuZiDianMapper">
+	<select id="queryAll" resultType="com.example.demo.pojo.Sysdictionary">
+		select <include refid="shuJu"></include>
+		 from SYSDICTIONARY
+	</select>
+	<sql id="shuJu">
+		ID,NAME,NOTE,CREATETIME,UPDATETIME,IF_DELETE
+	</sql>
+	<!--根据数据字典类型表id查询  -->
+	<select id="sysdictionarysItemAll" resultType="com.example.demo.pojo.SysdictionaryItem">
+		select <include refid="shuJuNeiRong"></include>
+		 from SYSDICTIONARYITEM m join (select id,NAME from SYSDICTIONARY) y 
+		 on m.PARENTID=y.id 
+		 <where>
+		 	<if test=" PARENTID != null and PARENTID != ''">
+				and y.id = #{id}
+			</if>
+		 </where>
+	</select>
+	<sql id="shuJuNeiRong">
+		m.id,m.PARENTID,m.NAME,m.SEQUENCE,m.UPDATETIME,m.CREATETIME,m.IF_DELETE,y.NAME y_name
+	</sql>
+	
+	<!--批量删除 软删除 -->
+	<update id="batchDeletUserById">
+		update SYSDICTIONARYITEM set IF_DELETE = 1
+		<where>
+			<foreach collection="array" item="id" open="id in ("
+				close=")" separator=",">
+				#{id}
+			</foreach>
+		</where>
+	</update>
+	<!--单个删除 软删除 -->
+	<update id="deletShuJuZiDianById">
+		update SYSDICTIONARYITEM set IF_DELETE = 1
+		<where>
+			<if test=" id != null and id != ''">
+				 id = #{id}
+			</if>
+		</where>
+	</update>
+	
+	<!--根据数据字典内容表id查询  -->
+	<select id="queryShuJuZiDianById" resultType="com.example.demo.pojo.SysdictionaryItem">
+		select <include refid="shu"></include>
+		 from SYSDICTIONARYITEM
+		 <where>
+		 	<if test=" id != null and id != ''">
+				and id = #{id}
+			</if>
+		 </where>
+	</select>
+	<sql id="shu">
+		id,PARENTID,NAME,SEQUENCE,UPDATETIME,CREATETIME,IF_DELETE
+	</sql>
+	
+	<!--修改数据字典内容表 -->
+	<update id="updateshujuzidian" parameterType="com.example.demo.vo.ShuJuZiDianNeiRongVo">
+		update SYSDICTIONARYITEM set IF_DELETE = #{ifDelete},parentid = #{parentid},name = #{name}
+		,sequence = #{sequence},updatetime = #{updatetime}
+		<where>
+			<if test=" id != null">
+				and id = #{id}
+			</if>
+		</where>
+	</update>
+	
+	<!--添加数据字典  -->
+	<insert id="addShuJu" parameterType="com.example.demo.pojo.SysdictionaryItem">
+		insert into SYSDICTIONARYITEM
+		values(seq_SYSDICTIONARYITEM.nextval,#{parentid},#{name},#{sequence},#{createtime},#{updatetime},0)
+	</insert>
+	
+</mapper>

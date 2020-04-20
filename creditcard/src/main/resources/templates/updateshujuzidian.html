@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>员工修改页面</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-
+scale=1.0">
+<link rel="stylesheet" th:href="@{../bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{../css/frame.css}">
+<link rel="stylesheet" th:href="@{../css/addClass.css}">
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#queryData").click(function() {
+			//得到form表单中的数据
+			var formValues = $("#myform").serialize();
+			 $.ajax({
+				url:"updateshujuzidian",
+				//要发送的数据
+				data:formValues,
+				//post请求发送
+				method:"post",
+				//返回参数为json数据
+				dataType:"json",
+				//回调函数
+				success:function(rs){
+					//判断success的值是否为success 是则登录成功
+					if (rs.success) {
+						//跳转页面
+						confirm("修改成功!!!");
+						location.href="yuanGong";
+					}else {
+						//没成功则给error赋值
+						alert(rs.message);
+					}
+				}
+			}); 
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<div>
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title">修改</h4>
+		</div>
+		<form  id="myform">
+			<input type="hidden" name="id" th:value="${sysdiction.id }" id="pi" />
+			<div class="modal-body">
+				<div class="form-group" style="height: 40px;">
+					<label for="inputName" class="col-sm-2 control-label">字典类型</label>
+					<div class="col-sm-10">
+						<input type="text" name="parentid" class="form-control" id="inputName"
+							placeholder="字典类型" th:value="${sysdiction.parentid}">
+					</div>
+				</div>
+				<div class="form-group" style="height: 40px;">
+					<label for="inputName" class="col-sm-2 control-label">名称</label>
+					<div class="col-sm-10">
+						<input type="text" name="name" class="form-control" id="inputName"
+							placeholder="名称" th:value="${sysdiction.name }">
+					</div>
+				</div>
+				<div class="form-group" style="height: 40px;">
+					<label for="inputName" class="col-sm-2 control-label">序列号</label>
+					<div class="col-sm-10">
+						<input type="text" name="sequence" class="form-control" id="inputName"
+							placeholder="序列号" th:value="${sysdiction.sequence }">
+					</div>
+				</div>
+				<div class="form-group" style="height: 40px;">
+					<label for="inputIsAdmin" class="col-sm-2 control-label">是否删除(0不删1删除)</label>
+					<div class="col-sm-10">
+						<select id="inputIsAdmin" name="ifDelete"
+							class="selectpicker show-tick form-control"
+							data-live-search="false">
+							<option th:value="0"  th:if="${sysdiction.ifDelete == '0' }" selected="selected">不删除</option>
+							<option th:value="1"  th:if="${sysdiction.ifDelete == '1' }" selected="selected">删除</option>
+							<option th:value="0"  th:unless="${sysdiction.ifDelete == '0' }" >不删除</option>
+							<option th:value="1"  th:unless="${sysdiction.ifDelete == '1' }" >删除</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" id="queryData" class="btn btn-primary">保存</button>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>

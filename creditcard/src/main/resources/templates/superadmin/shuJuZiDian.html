@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>数据字典页面</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-
+
+scale=1.0">
+<link rel="stylesheet" th:href="@{../bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{../css/frame.css}">
+<link rel="stylesheet" th:href="@{../css/addClass.css}">
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#queryData").click(function() {
+			//得到form表单中的数据
+			var formValues = $("#myform").serialize();
+			$.ajax({
+				url : "updateLoginInfUser",
+				//要发送的数据
+				data : formValues,
+				//post请求发送
+				method : "post",
+				//返回参数为json数据
+				dataType : "json",
+				//回调函数
+				success : function(rs) {
+					//判断success的值是否为success 是则登录成功
+					if (rs.success) {
+						//跳转页面
+						confirm("修改成功!!!");
+						//location.href="yuanGong";
+					} else {
+						//没成功则给error赋值
+						alert(rs.message);
+					}
+				}
+			});
+		});
+		$(function(){
+			$("#add").click(function() {
+				window.location.href = "addSysdictionaryItem";
+		    });
+		});
+		
+		$(function(){
+			//全选
+			$("#all").click(function() {
+				$("input[name = ids]").prop("checked",$(this).prop("checked"));
+			});
+			 //批量删除
+			 $("#batchDel").click(function(){
+				//获取所有选择的元素
+				if($("input[name=ids]:checked").size() > 0){ //有选中
+					//发送一个请求给后台
+					//得到form表单中的数据
+					var formValues = $("#userListForm").serialize();
+					 $.ajax({
+						url:"batchDeletSysdictionaryItem",
+						//要发送的数据
+						data:formValues,
+						//post请求发送
+						method:"post",
+						//返回参数为json数据
+						dataType:"json",
+						//回调函数
+						success:function(rs){
+							//判断success的值是否为success 是则登录成功
+							if (rs.success) {
+								//跳转页面
+								window.location.href = "shuJuXiang";
+							}
+						}
+					});
+				}else{  //没有选中
+					alert("请选择要删除的用户");
+				}
+			 });
+			
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="frame-header">
+		<span class="page-reload cur" th:text="${name}"></span>
+	</div>
+	<!--表格-->
+	<div class="table-wrapper pl27 " style="min-width: 1000px;">
+		<form action="" id="userListForm">
+			<table class="table text-center">
+				<thead>
+					<tr>
+						<th class="yt" style="width: 5%;"><input id="all"
+							type="checkbox">全选</th>
+						<th class="sort cur" style="width: 10%;">字典类型<img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th class="sort cur" style="width: 13%;">名称 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th style="width: 14%;" class="sort cur">序列<img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th style="width: 10%;" class="sort cur">创建时间 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th style="width: 9%;" class="sort cur">更新时间 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th class="sort cur" style="width: 10%;">是否删除(0不删,1删除) <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+						<th class="sort cur" style="width: 10%;">操作 <img
+							class="bottom" src="../img/jt-bottom.png" alt=""> <img
+							class="top" style="display: none" src="../img/jt-right-co.png"
+							alt="">
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="SysdictionaryItem:${sysdictionaryItems}">
+						<td><input type="checkbox" name="ids"
+							th:value="${SysdictionaryItem.id}" /></td>
+						<td th:text="${SysdictionaryItem.parentid}"></td>
+						<td th:text="${SysdictionaryItem.name}"></td>
+						<td th:text="${SysdictionaryItem.sequence}"></td>
+						<td
+							th:text="${#dates.format(SysdictionaryItem.createtime,'yyyy-MM-dd')}"></td>
+						<td
+							th:text="${#dates.format(SysdictionaryItem.updatetime,'yyyy-MM-dd')}"></td>
+						<td th:text="${SysdictionaryItem.ifDelete}"></td>
+						<td><a
+							th:href="@{/queryShuJuZiDianById(id=${SysdictionaryItem.id})}">修改</a>|
+							<a th:href="@{/deletShuJuZiDianById(id=${SysdictionaryItem.id})}">删除
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<div class="footer" style="text-align: right;">
+			<button type="button" class="btn btn-danger" id="batchDel">批量删除</button>
+			<button type="button" class="btn btn-danger" id="add">添加</button>
+		</div>
+	</div>
+</body>
+</html>

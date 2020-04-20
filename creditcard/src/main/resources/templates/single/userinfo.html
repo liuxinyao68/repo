@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>用户信息</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/frame.css">
+        <link rel="stylesheet" href="/css/addClass.css">
+        <style type="text/css">
+            .maindir{
+                width: 1400px;
+                margin-left: : 50px;
+                text-align: center;
+            }
+            .bold{
+                font-weight: bold;
+            }
+            tr{
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <dir id="maindir" class="maindir">
+            <div class="operates clearfix" style="overflow: auto;white-space: nowrap; font-size: 0;">
+                <form id="SearchForm" action="/userDetailInfo.do" method="post">
+                    <div class="pull-left left-inp defualt">
+                        <h2 style="margin-left: 300px">用户基本信息表</h2>
+                        <input type="text"  style="margin-left: 10px;" placeholder="姓名" name="realname" th:value="${realname}">
+                        <input type="text"  style="margin-left: 10px;" placeholder="身份证号" name="idcartnumber" th:value="${idcartnumber}">
+                        <input type="text"  style="margin-left: 10px;" placeholder="卡号 " name="cardnumber" th:value="${cardnumber}">
+                        <button class="btn delete pramary">搜索</button>
+                    </div>
+                </form>
+            </div>
+            <table border="1px" style="width: 1000px; text-align: center; ">
+                <tr>
+                    <td class="bold" width="250px">用户id</td>
+                    <td width="250px"><span th:text="${userInfoVO?.userId}">1000000013</span></td>
+                    <td class="bold" width="250px">用户名</td>
+                    <td width="250px"><span th:text="${userInfoVO?.realname}">karsa</span></td>
+                    <td class="bold" width="300px">身份证号码</td>
+                    <td width="250px"><span th:text="${userInfoVO?.idcartnumber}">123123123412341234</span></td>
+                </tr>
+                <tr>
+                    <td class="bold">信用卡号</td>
+                    <td><span th:text="${userInfoVO?.cardnumber}">6222371310165581</span></td>
+                    <td class="bold">卡状态</td>
+                    <td><span th:text="${userInfoVO?.state}">开通</span></td>
+                    <td class="bold">资料状态</td>
+                    <td><span th:text="${userInfoVO?.applystate}"> 已处理</span></td>                
+                </tr>
+                <tr>
+                    <td class="bold">电话</td>
+                    <td><span th:text="${userInfoVO?.phone}">13561521781</span></td>
+                    <td class="bold">信用分数</td>
+                    <td><span th:text="${userInfoVO?.authscope}">500</span></td>
+                    <td class="bold">信用等级</td>
+                    <td><span th:text="${userInfoVO?.authgrade}">C</span></td>
+                </tr>  
+                <tr>
+                    <td class="bold">是否激活</td>
+                    <td><span th:text="${userInfoVO?.ifActivation}">已激活</span></td>
+                    <td class="bold">总额度</td>
+                    <td><span th:text="${userInfoVO?.totalquota}">10000</span></td>
+                    <td class="bold">剩余额度</td>
+                    <td><span th:text="${userInfoVO?.surplusquota}">1000</span></td>
+                </tr>
+                <tr>
+                    <td class="bold">临时额度</td>
+                    <td><span th:text="${userInfoVO?.temporaryquota}">3000</span></td>
+                    <td class="bold">剩余临时额度</td>
+                    <td><span th:text="${userInfoVO?.surplustemporaryquota}">3000</span></td>
+                    <td class="bold">本期消费额度</td>
+                    <td><span th:text="${userInfoVO?.spending}">9000</span></td>
+                </tr>
+                <tr>
+                    <td class="bold">上月未还金额</td>
+                    <td><span th:text="${userInfoVO?.arrearage}">500</span></td>
+                    <td class="bold"></td>
+                    <td><span></span></td>
+                    <td class="bold"></td>
+                    <td><span></span></td>
+                </tr>
+                <tr>
+                    <td class="bold">本期提现金额</td>
+                    <td><span th:text="${userInfoVO?.withdraw}">5000</span></td>
+                    <td class="bold">提现手续费</td>
+                    <td><span th:text="${userInfoVO?.charge}">5</span></td>
+                    <td class="bold"></td>
+                    <td><span></span></td>
+                </tr>
+                <tr>
+                    <td class="bold">办卡时间</td>
+                    <td><span th:text="${userInfoVO?.createtime}">2019-01-01</span></td>
+                    <td class="bold">是否在黑名单</td>
+                    <td><span th:text="${userInfoVO?.ifBlackname}">未</span></td>
+                    <td class="bold"></td>
+                    <td><span></span></td>
+                </tr>
+            </table>
+        </dir>
+    </body>
+    <script src="/js/plugin/jquery/jquery.js"></script>
+    <script src="/js/frame-base.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>所有用户列表</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/frame.css">
+    <link rel="stylesheet" href="../css/addClass.css">
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="frame-header"><span class="page-reload cur">所有用户列表</span></div>
+    <!--表格-->
+    <div class="table-wrapper pl27 " style="min-width: 2500px;">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th style="width: 2%;" class="yt">
+                       <input type="checkbox" class="allCheck" id="allCheck" name="allCheck" onclick="selectAll()">
+                       <label for="all">&nbsp;&nbsp;&nbsp;</label>
+                    </th>
+                    <th style="width: 4%;" class="sort cur">分期id
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="sort cur" style="width:4%">用户名
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="sort cur" style="width: 4%;">身份证号
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="sort cur" style="width: 4%;">电话
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">卡号
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">是否在黑名单
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">分期总金额
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">分期月数
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">单期手续费
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">每月应还
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">已还月数
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">提醒次数
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">最近变动时间
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 4%;">开始分期时间
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                    <th class="no-nowrap sort cur" style="width: 8%;">操作
+                        <img class="bottom" src="../img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="list:${lists}">
+                    <td>
+                        <input type="checkbox" name="id" > 
+                        <label for="ph1"></label>
+                    </td>
+                    <td>
+                        <p th:text="${list.stageId}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.realname}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.idcardnumber}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.phone}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.cardnumber}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.ifBlackname}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.totalmoney}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.totalmonth}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.rate}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.monthsend}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.endsendMonthnum}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${list.remindnum}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${#dates.format(list.updatetime,'yyyy-MM-dd HH:mm:ss')}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${#dates.format(list.createtime,'yyyy-MM-dd HH:mm:ss')}"></p>
+                    </td>
+                   <td>
+                        <a href ="javascript:void(0);" th:onclick="addToBlackList([[${list.idcardnumber}]])">加入黑名单</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href ="javascript:void(0);" th:onclick="sendMessage([[${list.idcardnumber}]])">发送短信</a>
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<span th:replace="common/links-tpl::common-links-tpl"></span>
+<script type="text/javascript" src="/js/plugin/jquery.twbsPagination.min.js"></script>
+<script type="text/javascript" src="/js/plugins-override.js"></script>
+<script type="text/javascript" src="/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery.form.js"></script>
+<script type="text/javascript" th:inline="javascript">
+  
+  /* 批量处理的全选与全不选操作 */
+  function selectAll(){
+    //id=all是全选/反选的checkbox，判断是选中还是没选中
+    var isChecked=$("#allCheck").is(':checked');
+    //获取所有checkbox组成的数组
+    var checkedArrs=$("input[type='checkbox']:checked");
+    //判断是全选还是反选
+    if(isChecked){
+      $("input[type='checkbox']").each(function(){
+        $(this).prop('checked',true);
+      });
+    }else{
+      $("input[type='checkbox']").each(function(){
+        $(this).prop('checked',false);
+      });
+    }
+  }
+  
+  function addToBlackList(idcard){
+	  $.ajax({
+	        url:"/addToBlackListByIdCard.do",	
+	        type:"post",
+	        dataType: "json",	
+	        data:{idcard:idcard,op:1},
+			success: function(rs){
+			//最后将数据返回到这里，通过js显示在页面
+				if(rs.success == true){
+					alert(idcard + "用户以被成功加入黑名单");
+				}else{
+					alert(idcard + "用户加入黑名单失败," + rs.message);
+				}
+			}
+	    })
+  }
+  
+  function sendMessage(userid){
+	  $.ajax({
+	        url:"/SendMessageList.do",	
+	        type:"post",
+	        dataType: "json",	
+	        data:{userid:userid,send:"你好，请及时还款信用卡，否将你的将会纳入本行的黑名单"},
+			success: function(rs){
+			//最后将数据返回到这里，通过js显示在页面
+				if(rs.success == true){
+					alert("短信成功发送");
+				}else{
+					alert("短信发送失败," + rs.message);
+				}
+			}
+	    })
+  }
+
+</script>
+
+</html>
